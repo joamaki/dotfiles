@@ -1,3 +1,7 @@
+# Jussi's zshrc
+
+# Defaults
+export EDITOR=kak
 
 # Go setup
 export PATH=$PATH:/usr/local/go/bin
