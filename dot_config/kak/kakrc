@@ -1,1 +1,17 @@
 # Jussi's kakrc
+
+## Plugin setup
+
+# Load plug.kak to manage plugins.
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+plug "andreyorst/plug.kak" noload
+
+# Language server protocol support
+eval %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
+
+# Golang
+plug "chriswalker/golang.kak"
+
+## Custom commands
+define-command -params 1 -shell-script-candidates gf %{ git ls-tree -r HEAD --name-only } %{ edit %arg{1} }
