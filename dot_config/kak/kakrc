@@ -14,4 +14,4 @@ lsp-enable
 plug "chriswalker/golang.kak"
 
 ## Custom commands
-define-command -params 1 -shell-script-candidates gf %{ git ls-tree -r HEAD --name-only } %{ edit %arg{1} }
+define-command -params 1 -shell-script-candidates %{ git ls-tree -r HEAD --name-only } gf %{ edit %arg{1} }
