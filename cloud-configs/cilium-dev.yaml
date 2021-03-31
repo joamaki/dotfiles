@@ -1,0 +1,52 @@
+
+package_update: true
+package_upgrade: true
+packages:
+  - build-essential
+  - curl
+  - jq
+  - apt-transport-https
+  - htop
+  - tmux
+  - linux-tools-common
+  - linux-tools-generic
+  - ca-certificates
+  - libelf-dev
+  - libtool
+  - cmake
+  - make
+  - gcc
+  - docker.io
+  - docker-compose
+  - llvm
+  - clang
+  - git
+  - kakoune
+  - zsh
+  - python3-pip
+
+runcmd:
+  - curl -L https://golang.org/dl/go1.16.2.linux-amd64.tar.gz | tar xz -C /usr/local
+  - sudo -u jussi bash /tmp/init-jussi.sh
+
+write_files:
+  - content: |
+      cd $HOME
+      /usr/local/go/bin/go install github.com/twpayne/chezmoi@latest
+      go/bin/chezmoi init --apply https://github.com/joamaki/dotfiles.git
+      go/bin/chezmoi update
+    path: /tmp/init-jussi.sh
+
+users:
+  - name: jussi
+    gecos: Jussi Maki
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, docker, adm, netdev
+    ssh_import_id: None
+    shell: /usr/bin/zsh
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKFYjPZV6fPnTt3+VUlXln3ipPPCw+iaqdTNRwyScybaPST5sSDRXvJ9H7rIWOv1ROw6sjAXcFHQsvlw68Gn16vseN+x0EJ6yWH90tW3zlK3FVcEWRAe3q/FG43dppPB5rckv29Ln9cx+QuTArfJwrnqRV/53hYBaFKjZtGtoxGycJnqWmKBgcsoy1646r7CxaEhK0ccnAEnc4rg18Y98ibL91lwDHugCr5jk6Yks0LfC/AQcfnPK+gTvviEAGbBhmhTo+Yk7ObuaMsWZltUl+YyZKlqGr/3apg6VMyjQ/fUfyy79onKPQOGPTS6il7vRwPHov759Ian50d6QtJK5l5ian0M/2cXn3+KNgCl0KFSNNVOGw/1VxKSaOriY5zs8MUNKor7xLD3U85sE04wum1axTjPyu3eedcvubfMNvZjfm8qED3to1ZZleSGMIEWJ3mWJ6pc2DTHUfPlo8xI9sJN76ukmDkhKrqct9FgRH4w53zetbcU9LulJqqjUP1DE= jussi@Florrum.local
+
+groups:
+  - docker
