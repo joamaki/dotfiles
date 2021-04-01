@@ -4,5 +4,5 @@
 export EDITOR=kak
 
 # Go setup
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/bin
+export PATH=$HOME/bin:$PATH:/usr/local/go/bin:$HOME/go/bin
 
