@@ -1,6 +1,9 @@
 # Jussi's zshrc
 
-# Defaults
+# Prompt
+PROMPT='%B%F{240}%1~%f%b %# '
+
+# Default tools
 export EDITOR=kak
 
 # Go setup
