@@ -21,9 +21,9 @@ packages:
   - llvm
   - clang
   - git
-  - kakoune
   - zsh
   - python3-pip
+  - pkg-config
 
 runcmd:
   - curl -L https://golang.org/dl/go1.16.2.linux-amd64.tar.gz | tar xz -C /usr/local
