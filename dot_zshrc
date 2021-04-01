@@ -2,6 +2,7 @@
 
 # Options
 setopt autocd autopushd pushdignoredups
+alias ls="ls --color=auto"
 
 # Prompt
 PROMPT='%B%F{240}%1~%f%b %# '
