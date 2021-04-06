@@ -1,5 +1,11 @@
 # Jussi's kakrc
 
+## Prefs and binds
+set-option global makecmd 'make -j8'
+set-option global grepcmd 'rg --column --with-filename'
+
+map -docstring 'Open new' global normal <c-w> ': new<ret>'
+
 ## Plugin setup
 
 # Load plug.kak to manage plugins.
