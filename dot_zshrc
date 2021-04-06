@@ -3,6 +3,8 @@
 # Options
 setopt autocd autopushd pushdignoredups
 alias ls="ls --color=auto"
+autoload -U compinit
+compinit
 
 # Prompt
 PROMPT='%B%F{240}%1~%f%b %# '

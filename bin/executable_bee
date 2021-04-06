@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+S=$RANDOM
+L=$(($S % 3))
+R=$((2 - $L))
+for x in {0..$L}; do echo -n " "; done
+echo -n "🐝"
+for x in {0..$R}; do echo -n " "; done
