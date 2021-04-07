@@ -4,6 +4,8 @@
 set-option global makecmd 'make -j8'
 set-option global grepcmd 'rg --column --with-filename'
 
+set-option global indentwidth 0 # tab
+
 map -docstring 'Open new' global normal <c-w> ': new<ret>'
 
 ## Plugin setup
