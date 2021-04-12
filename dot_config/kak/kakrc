@@ -17,9 +17,22 @@ plug "andreyorst/plug.kak" noload
 # Language server protocol support
 eval %sh{kak-lsp --kakoune -s $kak_session}
 lsp-enable
+lsp-auto-hover-enable
+lsp-auto-hover-insert-mode-enable
+lsp-auto-signature-help-enable
+
+map global user -docstring "Enable lsp keymap mode for next key" l ": enter-user-mode<space>lsp<ret>"
+map global lsp -docstring "Rename the item under cursor" R ": lsp-rename-prompt<ret>"
+
 
 # Golang
 plug "chriswalker/golang.kak"
-
+hook global WinSetOption filetype=go %{
+    set window indentwidth 0
+    set window formatcmd 'gofmt'
+    #set window makecmd 'go build .'
+    add-highlighter window/ regex 'if err != nil .*?\{.*?\}' 0:comment
+    map window user o %{: grep HACK|TODO|FIXME|XXX|NOTE|^func|^var|^package|^const|^goto|^struct|^type %val{bufname} -H<ret>} -docstring "Show outline"
+}
 ## Custom commands
 define-command -params 1 -shell-script-candidates %{ git ls-tree -r HEAD --name-only } gf %{ edit %arg{1} }
