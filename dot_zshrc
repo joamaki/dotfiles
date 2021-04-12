@@ -19,6 +19,8 @@ zstyle ':vcs_info:*' enable git
 # Default tools and paths
 export EDITOR=kak
 export PATH=$HOME/bin:$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Go setup
 export GOPATH=$HOME/go 
