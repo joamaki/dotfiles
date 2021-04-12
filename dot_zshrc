@@ -16,11 +16,11 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
-# Default tools
+# Default tools and paths
 export EDITOR=kak
+export PATH=$HOME/bin:$PATH:/usr/local/go/bin:$HOME/go/bin:$HOME/.local/bin
 
 # Go setup
-export PATH=$HOME/bin:$PATH:/usr/local/go/bin:$HOME/go/bin
 export GOPATH=$HOME/go 
 
 # Link the SSH agent socket to known path (to carry it across to tmux)
