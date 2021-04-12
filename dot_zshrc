@@ -26,10 +26,8 @@ export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go 
 
 # Link the SSH agent socket to known path (to carry it across to tmux)
-if [ -S "$SSH_AUTH_SOCK" ]; then
-	if [ "$(readlink ~/.ssh/ssh_auth_sock)" != "$SSH_AUTH_SOCK" ]; then
-  		ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-	fi
+if [ ! -L "$SSH_AUTH_SOCK" ]; then
+	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 test -S "$HOME/.ssh/ssh_auth_sock" && \
   export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
