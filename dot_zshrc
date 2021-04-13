@@ -2,7 +2,6 @@
 
 # Options
 setopt autocd autopushd pushdignoredups
-alias ls="ls --color=auto"
 autoload -U compinit
 compinit
 
@@ -15,6 +14,11 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
+
+# Completinos
+source <(kubectl completion zsh)
+echo 'alias k=kubectl' >>~/.zshrc
+echo 'complete -F __start_kubectl k' >>~/.zshrc
 
 # Default tools and paths
 export EDITOR=kak
