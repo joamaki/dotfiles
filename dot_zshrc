@@ -5,6 +5,12 @@ setopt autocd autopushd pushdignoredups
 autoload -U compinit
 compinit
 
+if [ "$(uname -s)" == "Darwin" ]; then
+	alias ls="ls -G"
+else
+	alias ls="ls --color=auto"
+fi
+
 # Prompt
 PROMPT='%B%F{240}%1~%f%b %# '
 autoload -Uz vcs_info
@@ -15,10 +21,10 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
-# Completinos
+# Completions
 source <(kubectl completion zsh)
-echo 'alias k=kubectl' >>~/.zshrc
-echo 'complete -F __start_kubectl k' >>~/.zshrc
+alias k=kubectl
+complete -F __start_kubectl k
 
 # Default tools and paths
 export EDITOR=kak
