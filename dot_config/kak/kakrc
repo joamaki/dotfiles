@@ -1,12 +1,21 @@
 # Jussi's kakrc
 
 ## Prefs and binds
-set-option global makecmd 'make -j8'
+set-option global makecmd 'make -j16'
 set-option global grepcmd 'rg --column --with-filename'
 
 set-option global indentwidth 0 # tab
 
 map -docstring 'Open new' global normal <c-w> ': new<ret>'
+
+map global normal ';' ':'
+
+map global normal <c-y> '<a-|>tmux loadb -<ret>:echo "copied to tmux"<ret>'
+
+map -docstring "grep next" global goto 0 '<esc>:grep-next-match<ret>'
+map -docstring "grep previous" global goto 9 '<esc>:grep-previous-match<ret>'
+
+map -docstring 'ctags-search' global goto x '<esc>:ctags-search<ret>'
 
 ## Plugin setup
 
@@ -24,14 +33,14 @@ lsp-auto-signature-help-enable
 map global user -docstring "Enable lsp keymap mode for next key" l ": enter-user-mode<space>lsp<ret>"
 map global lsp -docstring "Rename the item under cursor" R ": lsp-rename-prompt<ret>"
 
-
 # Golang
 plug "chriswalker/golang.kak"
 hook global WinSetOption filetype=go %{
     set window indentwidth 0
     set window formatcmd 'gofmt'
     #set window makecmd 'go build .'
-    add-highlighter window/ regex 'if err != nil .*?\{.*?\}' 0:comment
+    #add-highlighter window/ regex 'if err != nil .*?\{.*?\}' 0:comment
+    hook buffer BufWritePre .* %{format}
     map window user o %{: grep HACK|TODO|FIXME|XXX|NOTE|^func|^var|^package|^const|^goto|^struct|^type %val{bufname} -H<ret>} -docstring "Show outline"
 }
 ## Custom commands
