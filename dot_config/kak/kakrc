@@ -37,7 +37,7 @@ map global lsp -docstring "Rename the item under cursor" R ": lsp-rename-prompt<
 plug "chriswalker/golang.kak"
 hook global WinSetOption filetype=go %{
     set window indentwidth 0
-    set window formatcmd 'gofmt'
+    set window formatcmd 'gofmt | goimports'
     #set window makecmd 'go build .'
     #add-highlighter window/ regex 'if err != nil .*?\{.*?\}' 0:comment
     hook buffer BufWritePre .* %{format}
